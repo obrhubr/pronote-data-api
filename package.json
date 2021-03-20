@@ -24,6 +24,7 @@
     "pronote-api": "file:pronote-api-custom"
   },
   "devDependencies": {
-    "jest": "^26.6.3"
+    "jest": "^26.6.3",
+    "supertest": "^6.1.3"
   }
 }
