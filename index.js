@@ -10,7 +10,7 @@ const pronote = require('./pronote-api-custom');
 //imprt cors, to enable accessing the pronote data
 const cors = require('cors');
 //import error-handling function
-const errorHandler = require('lib/error');
+const errorHandler = require('./lib/error');
 
 //create the app and use bodyparser
 const app = express();
@@ -21,7 +21,7 @@ app.use(cors());
 //add timetable route
 app.post('/timetable', async (req, res) => {
     if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
-        dataMissing(req, res);
+        errorHandler.dataMissing(req, res);
         return;
     } else {
         const url = req.body.url;
@@ -33,14 +33,14 @@ app.post('/timetable', async (req, res) => {
             const timetable = await session.timetable();
             res.status(200).json({ timetable: timetable });
         } catch (err) {
-            wrongCredentials(req, res, err)
+            errorHandler.wrongCredentials(req, res, err)
         }
     }
 });
 
 app.post('/homework', async (req, res) => {
     if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
-        dataMissing(req, res);
+        errorHandler.dataMissing(req, res);
         return;
     } else {
         const url = req.body.url;
@@ -52,14 +52,14 @@ app.post('/homework', async (req, res) => {
             const homework = await session.homeworks();
             res.status(200).json({ homework: homework });
         } catch (err) {
-            wrongCredentials(req, res, err)
+            errorHandler.wrongCredentials(req, res, err)
         }
     }
 });
 
 app.post('/contents', async (req, res) => {
     if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
-        dataMissing(req, res);
+        errorHandler.dataMissing(req, res);
         return;
     } else {
         const url = req.body.url;
@@ -71,10 +71,10 @@ app.post('/contents', async (req, res) => {
             const contents = await session.contents();
             res.status(200).json({ contents: contents });
         } catch (err) {
-            wrongCredentials(req, res, err)
+            errorHandler.wrongCredentials(req, res, err)
         }
     }
 });
 
 //start listening on specified port
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);
