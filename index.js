@@ -15,3 +15,28 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+
+//add timetable route
+app.post('/timetable', async (req, res) => {
+    if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
+        res.status(401).json({ error: 'Specify url, username and password of your account!' });
+        return;
+    } else {
+        const url = req.body.url;
+        const username = req.body.username;
+        const password = req.body.password;
+
+        try {
+            const session = await pronote.login(url, username, password);
+            const timetable = await session.timetable();
+            res.status(200).json({ timetable: timetable });
+        } catch (err) {
+            console.log(err)
+            if (err.code === pronote.errors.WRONG_CREDENTIALS.code) {
+                res.status(501).json({ error: 'Wrong Credentials' });
+            } else {
+                res.status(501).json({ error: err });
+            }
+        }
+    }
+});
