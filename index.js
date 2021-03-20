@@ -88,3 +88,6 @@ app.post('/contents', async (req, res) => {
         }
     }
 });
+
+//start listening on specified port
+app.listen(process.env.PORT);
