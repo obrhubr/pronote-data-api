@@ -20,7 +20,7 @@ app.use(cors());
 
 //add timetable route
 app.post('/timetable', async (req, res) => {
-    if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
+    if (req.body.url == undefined || req.body.username == undefined || req.body.password == undefined) {
         errorHandler.dataMissing(req, res);
         return;
     } else {
@@ -39,7 +39,7 @@ app.post('/timetable', async (req, res) => {
 });
 
 app.post('/homework', async (req, res) => {
-    if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
+    if (req.body.url == undefined || req.body.username == undefined || req.body.password == undefined) {
         errorHandler.dataMissing(req, res);
         return;
     } else {
@@ -58,7 +58,7 @@ app.post('/homework', async (req, res) => {
 });
 
 app.post('/contents', async (req, res) => {
-    if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
+    if (req.body.url == undefined || req.body.username == undefined || req.body.password == undefined) {
         errorHandler.dataMissing(req, res);
         return;
     } else {
