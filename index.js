@@ -78,3 +78,4 @@ app.post('/contents', async (req, res) => {
 
 //start listening on specified port
 app.listen(process.env.PORT || 3000);
+module.exports = app
