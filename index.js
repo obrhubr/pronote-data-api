@@ -40,3 +40,27 @@ app.post('/timetable', async (req, res) => {
         }
     }
 });
+
+app.post('/homework', async (req, res) => {
+    if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
+        res.status(401).json({ error: 'Specify url, username and password of your account!' });
+        return;
+    } else {
+        const url = req.body.url;
+        const username = req.body.username;
+        const password = req.body.password;
+
+        try {
+            const session = await pronote.login(url, username, password);
+            const homework = await session.homeworks();
+            res.status(200).json({ homework: homework });
+        } catch (err) {
+            console.log(err)
+            if (err.code === pronote.errors.WRONG_CREDENTIALS.code) {
+                res.status(501).json({ error: 'Wrong Credentials' });
+            } else {
+                res.status(501).json({ error: err });
+            }
+        }
+    }
+});
