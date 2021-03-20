@@ -8,9 +8,9 @@ describe('Post Endpoints', () => {
             .send({
                 url: "test",
                 username: 'test'
-            })
-        server.close()
-        expect(res.statusCode).toEqual(401)
+            });
+        server.close();
+        expect(res.statusCode).toEqual(401);
     });
 });
 
@@ -22,8 +22,8 @@ describe('Post Endpoints', () => {
                 url: "test",
                 username: 'test',
                 password: "test"
-            })
-        server.close()
-        expect(res.statusCode).toEqual(501)
+            });
+        server.close();
+        expect(res.statusCode).toEqual(501);
     });
 });

@@ -34,8 +34,8 @@ app.post('/timetable', async (req, res) => {
             res.status(200).json({ timetable: timetable });
         } catch (err) {
             errorHandler.wrongCredentials(req, res, err)
-        }
-    }
+        };
+    };
 });
 
 app.post('/homework', async (req, res) => {
@@ -53,8 +53,8 @@ app.post('/homework', async (req, res) => {
             res.status(200).json({ homework: homework });
         } catch (err) {
             errorHandler.wrongCredentials(req, res, err)
-        }
-    }
+        };
+    };
 });
 
 app.post('/contents', async (req, res) => {
@@ -72,8 +72,8 @@ app.post('/contents', async (req, res) => {
             res.status(200).json({ contents: contents });
         } catch (err) {
             errorHandler.wrongCredentials(req, res, err)
-        }
-    }
+        };
+    };
 });
 
 //start listening on specified port
@@ -81,4 +81,4 @@ var server = app.listen(process.env.PORT || 3000);
 module.exports = {
     server: server,
     app: app
-}
+};
