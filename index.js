@@ -21,7 +21,7 @@ app.use(cors());
 //add timetable route
 app.post('/timetable', async (req, res) => {
     if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
-        res.status(401).json({ error: 'Specify url, username and password of your account!' });
+        dataMissing(req, res);
         return;
     } else {
         const url = req.body.url;
@@ -33,19 +33,14 @@ app.post('/timetable', async (req, res) => {
             const timetable = await session.timetable();
             res.status(200).json({ timetable: timetable });
         } catch (err) {
-            console.log(err)
-            if (err.code === pronote.errors.WRONG_CREDENTIALS.code) {
-                res.status(501).json({ error: 'Wrong Credentials' });
-            } else {
-                res.status(501).json({ error: err });
-            }
+            wrongCredentials(req, res, err)
         }
     }
 });
 
 app.post('/homework', async (req, res) => {
     if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
-        res.status(401).json({ error: 'Specify url, username and password of your account!' });
+        dataMissing(req, res);
         return;
     } else {
         const url = req.body.url;
@@ -57,19 +52,14 @@ app.post('/homework', async (req, res) => {
             const homework = await session.homeworks();
             res.status(200).json({ homework: homework });
         } catch (err) {
-            console.log(err)
-            if (err.code === pronote.errors.WRONG_CREDENTIALS.code) {
-                res.status(501).json({ error: 'Wrong Credentials' });
-            } else {
-                res.status(501).json({ error: err });
-            }
+            wrongCredentials(req, res, err)
         }
     }
 });
 
 app.post('/contents', async (req, res) => {
     if (req.body.url == undefined && req.body.username == undefined && req.body.password == undefined) {
-        res.status(401).json({ error: 'Specify url, username and password of your account!' });
+        dataMissing(req, res);
         return;
     } else {
         const url = req.body.url;
@@ -81,12 +71,7 @@ app.post('/contents', async (req, res) => {
             const contents = await session.contents();
             res.status(200).json({ contents: contents });
         } catch (err) {
-            console.log(err)
-            if (err.code === pronote.errors.WRONG_CREDENTIALS.code) {
-                res.status(501).json({ error: 'Wrong Credentials' });
-            } else {
-                res.status(501).json({ error: err });
-            }
+            wrongCredentials(req, res, err)
         }
     }
 });
