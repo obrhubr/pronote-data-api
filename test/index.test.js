@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../index')
+const { server, app } = require('../index')
 
 describe('Post Endpoints', () => {
     it('should return a 401 error', async () => {
@@ -9,6 +9,7 @@ describe('Post Endpoints', () => {
                 url: "test",
                 username: 'test'
             })
+        server.close()
         expect(res.statusCode).toEqual(401)
     });
 });
@@ -22,6 +23,7 @@ describe('Post Endpoints', () => {
                 username: 'test',
                 password: "test"
             })
+        server.close()
         expect(res.statusCode).toEqual(501)
     });
 });
