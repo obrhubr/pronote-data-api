@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 const pronote = require('./pronote-api-custom');
 //imprt cors, to enable accessing the pronote data
 const cors = require('cors');
+//import error-handling function
+const errorHandler = require('lib/error');
 
 //create the app and use bodyparser
 const app = express();
