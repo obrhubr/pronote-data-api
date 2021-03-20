@@ -1,0 +1,19 @@
+{
+  "name": "pronote-data-api",
+  "version": "1.0.0",
+  "description": "Access your pronote data in a json format",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obrhubr/pronote-data-api.git"
+  },
+  "author": "Niklas Oberhuber",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/obrhubr/pronote-data-api/issues"
+  },
+  "homepage": "https://github.com/obrhubr/pronote-data-api#readme"
+}
