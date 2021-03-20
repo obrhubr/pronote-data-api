@@ -4,7 +4,7 @@
   "description": "Access your pronote data in a json format",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,9 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "pronote-api": "file:pronote-api-custom"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "supertest": "^6.1.3"
   }
 }
